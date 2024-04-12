@@ -1,0 +1,16 @@
+[MAIN]
+fail-under=8  # code gets score under this value will fail the CI/CD test stage
+
+[REPORTS]
+output-format=text
+reports=yes
+
+[DESIGN]
+max-statements=100
+
+[FORMAT]
+max-line-length = 120
+
+[MESSAGES CONTROL]
+disable=W0703, # broad-exception
+        E0401, # import-error
