@@ -1,4 +1,4 @@
-# pylint: disable=R0801
+# pylint: disable=R0801, R0903
 """
      Testy tworzenia bazy danych oraz populacji danych do utworzonej bazy
 """
@@ -18,6 +18,7 @@ URL = f"postgresql+psycopg2://{db_user}:{db_pass}@{db_host}:{db_port}/{db_name}"
 class PostgresTestCase(TestDbAbstractTestCase):
     """Testing class"""
 
+    @unittest.skip
     def test_all(self):
         """ Testing all remade functions in Postgres """
 

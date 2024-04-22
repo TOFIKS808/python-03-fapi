@@ -17,6 +17,10 @@ test::
 	python  -m unittest discover tests -vvv
 .PHONY: test
 
+api::
+	uvicorn main:app --reload
+
+
 # Docker development
 up::
 	$(MAKE) down || true
