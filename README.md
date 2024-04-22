@@ -1,8 +1,8 @@
-# Python-02
+# Python-03 Fast API
 
 ## Description
 
-Program that implements handling the population of the database with API data into multiple db servers.
+Fast API serving data from our previosly populated DB
 
 API used https://jsonplaceholder.typicode.com
 
