@@ -1,4 +1,19 @@
-# Basic Python skeleton project
+# Python-02
+
+## Description
+
+Program that implements handling the population of the database with API data into multiple db servers.
+
+API used https://jsonplaceholder.typicode.com
+
+* PostgreSql
+* MariaDB
+* Oracle
+* MsSQL
+* IBM DB2
+* SQLite
+
+
 
 ## Local development with `venv`
 * run `make venv` to create `venv`
@@ -13,4 +28,7 @@
 * run `make d-pip` to install dependencies in container
 * run `make d-lint` to lint code in container
 * run `make d-test` to run tests in container
+
+
+https://medium.com/@arthurapp98/using-sqlalchemy-to-create-and-populate-a-postgresql-database-with-excel-data-eb6049d93402
 

@@ -1,15 +1,35 @@
-version: '3.1'
 services:
   anaconda:
     build:
       context: .
-      dockerfile: ./.docker/Dockerfile
+      dockerfile: .docker/Dockerfile
 
     volumes:
       - ./:/python
     ports:
       - "81:8888"
     command:
-      /opt/conda/bin/jupyter notebook --notebook-dir=/python/notebooks --ip='0.0.0.0' --port=8888 --no-browser --allow-root --NotebookApp.token='' --NotebookApp.password=''
-
+        /opt/conda/bin/jupyter notebook --notebook-dir=/python/notebooks --ip='0.0.0.0' --port=8888 --no-browser --allow-root --NotebookApp.token='' --NotebookApp.password=''
+    environment:
+      - PG_DB_NAME=${PG_DB_NAME}
+      - PG_DB_NAME_TEST=${PG_DB_NAME_TEST}
+      - PG_DB_PORT=${PG_DB_PORT}
+      - PG_DB_USER=${PG_DB_USER}
+      - PG_DB_PASS=${PG_DB_PASS}
+      - PG_DB_HOST=${PG_DB_HOST}
+      - M_DB_NAME=${M_DB_NAME}
+      - M_DB_PORT=${M_DB_PORT}
+      - M_DB_USER=${M_DB_USER}
+      - M_DB_PASS=${M_DB_PASS}
+      - M_DB_HOST=${M_DB_HOST}
+      - O_DB_NAME=${O_DB_NAME}
+      - O_DB_PORT=${O_DB_PORT}
+      - O_DB_USER=${O_DB_USER}
+      - O_DB_PASS=${O_DB_PASS}
+      - O_DB_HOST=${O_DB_HOST}
+      - MS_DB_NAME=${MS_DB_NAME}
+      - MS_DB_PORT=${MS_DB_PORT}
+      - MS_DB_USER=${MS_DB_USER}
+      - MS_DB_PASS=${MS_DB_PASS}
+      - MS_DB_HOST=${MS_DB_HOST}
     tty: true
