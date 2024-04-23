@@ -36,4 +36,6 @@ jobs:
         pylint src/ tests/
     - name: Tests
       run: |
-        python -m unittest discover tests/unit -vvv
+        	mkdir -p ./var
+	        DB_URL="sqlite:///./var/testing.db" python  -m unittest discover tests -vvv
+

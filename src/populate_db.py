@@ -14,7 +14,6 @@ from Model import Base, User, Company, Address, Geo, Post, Comment, Album, Photo
 def create_db(url: str) -> None:
     """create new db, drop if exists"""
     engine = create_engine(url)
-    print(url)
     if database_exists(engine.url):
         drop_database(engine.url)
 

@@ -15,7 +15,7 @@ lint::
 
 test::
 	mkdir -p ./var
-	python  -m unittest discover tests -vvv
+	DB_URL="sqlite:///./var/testing.db" python  -m unittest discover tests -vvv
 .PHONY: test
 
 api::
