@@ -3,21 +3,21 @@
 """
 import unittest
 from tests.DbTestCase import DbTestTestCase
-from src.db.address import get_address
-from src.Model import Address
+from src.db.company import get_company
+from src.Model import Company
 
 
 class AddressDbTestCase(DbTestTestCase):
-    """ Testing class for db address """
+    """ Testing class for db company """
 
     def test_get_item_not_existing(self):
-        """ Testing get_users with an item that does not exist """
-        self.assertIsNone(get_address(id=-11))
+        """ Testing get_company with an item that does not exist """
+        self.assertIsNone(get_company(id=-11))
 
     def test_get_item(self):
-        """ Testing if output is instance of the User class """
-        result = get_address(id=1)
-        self.assertIsInstance(result, Address)
+        """ Testing if output is instance of the Company class """
+        result = get_company(id=1)
+        self.assertIsInstance(result, Company)
 
 
 if __name__ == '__main__':
