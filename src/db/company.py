@@ -15,5 +15,5 @@ def get_company(id: int) -> None | Company:
         try:
             return session.execute(select(Company).where(Company.id == id)).scalars().one()
         except Exception as e:
-            logger().debug(f"get_user : {str(e)}")
+            logger().debug(f"get_company : {str(e)}")
             return None

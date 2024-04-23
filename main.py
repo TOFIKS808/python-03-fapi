@@ -20,17 +20,17 @@ def api_users_get_item(id: int):
     return users_get_item(id)
 
 @app.get("/companies/{id}", tags=["Company"])
-def api_users_get_item(id: int):
+def api_companies_get_item(id: int):
     """ get company endpoint"""
     return company_get_item(id)
 
 @app.get("/addresses/{id}", tags=["Address"])
-def api_users_get_item(id: int):
+def api_addresses_get_item(id: int):
     """ get address endpoint"""
     return address_get_item(id)
 
 @app.get("/geo/{id}", tags=["Geo"])
-def api_users_get_item(id: int):
+def api_geo_get_item(id: int):
     """ get geo endpoint"""
     return geo_get_item(id)
 
@@ -41,11 +41,16 @@ def api_posts_get_item(id: int):
     return posts_get_item(id)
 
 @app.get("/comments/{id}", tags=["Comment"])
-def api_posts_get_item(id: int):
+def api_comments_get_item(id: int):
     """ get comment endpoint"""
     return comments_get_item(id)
 
 @app.get("/albums/{id}", tags=["Album"])
-def api_posts_get_item(id: int):
+def api_albums_get_item(id: int):
+    """ get album endpoint"""
+    return albums_get_item(id)
+
+@app.get("/photos/{id}", tags=["Photo"])
+def api_photos_get_item(id: int):
     """ get album endpoint"""
     return albums_get_item(id)

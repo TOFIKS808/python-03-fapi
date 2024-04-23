@@ -1,19 +1,19 @@
 # pylint: disable=W0622
 """
-    DB functions for company
+    DB functions for photo
 """
 from sqlalchemy import select
 
-from src.Model import Company
+from src.Model import Photo
 from src.db.lib import get_db_session
 from src.logger import logger
 
 
-def get_company(id: int) -> None | Company:
-    """get company by id"""
+def get_photo(id: int) -> None | Photo:
+    """get photo by id"""
     with get_db_session() as session:
         try:
-            return session.execute(select(Company).where(Company.id == id)).scalars().one()
+            return session.execute(select(Photo).where(Photo.id == id)).scalars().one()
         except Exception as e:
-            logger().debug(f"get_user : {str(e)}")
+            logger().debug(f"get_photo : {str(e)}")
             return None
