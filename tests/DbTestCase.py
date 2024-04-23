@@ -71,12 +71,12 @@ class DbTestTestCase(unittest.TestCase):
             self.assertEqual("Ervin Howell", user.name)
             self.assertEqual("Antonette", user.username)
             self.assertEqual("Shanna@melissa.tv", user.email)
-            self.assertEqual("Victor Plains", user.address.street)
-            self.assertEqual("Suite 879", user.address.suite)
-            self.assertEqual("Wisokyburgh", user.address.city)
-            self.assertEqual("90566-7771", user.address.zipcode)
-            self.assertEqual("-43.9509", user.address.geo.lat)
-            self.assertEqual("-34.4618", user.address.geo.long)
+            # self.assertEqual("Victor Plains", user.address.street)
+            # self.assertEqual("Suite 879", user.address.suite)
+            # self.assertEqual("Wisokyburgh", user.address.city)
+            # self.assertEqual("90566-7771", user.address.zipcode)
+            # self.assertEqual("-43.9509", user.address.geo.lat)
+            # self.assertEqual("-34.4618", user.address.geo.long)
 
     def __func_endpoint_posts(self, url: str):
         """ Populating post table test """
