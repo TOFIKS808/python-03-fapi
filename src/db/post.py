@@ -1,6 +1,6 @@
 # pylint: disable=W0622
 """
-    DB functions for users
+    DB functions for posts
 """
 from sqlalchemy import select
 

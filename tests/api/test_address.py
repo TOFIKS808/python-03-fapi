@@ -9,7 +9,7 @@ from tests.DbTestCase import DbTestTestCase
 from main import app
 class UsersTestCase(DbTestTestCase):
     """
-        Tests for functional tests for user endpoints.
+        Tests for functional tests for address endpoints.
     """
 
     def setUp(self):

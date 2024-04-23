@@ -11,11 +11,11 @@ class CommentDbTestCase(DbTestTestCase):
     """ Testing class for db comment """
 
     def test_get_item_not_existing(self):
-        """ Testing get_users with an item that does not exist """
+        """ Testing get_comment with an item that does not exist """
         self.assertIsNone(get_comment(id=-11))
 
     def test_get_item(self):
-        """ Testing if output is instance of the User class """
+        """ Testing if output is instance of the Comment class """
         result = get_comment(id=1)
         self.assertIsInstance(result, Comment)
 

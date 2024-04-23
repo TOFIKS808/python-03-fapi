@@ -1,6 +1,6 @@
-# pylint: disable=W0622users
+# pylint: disable=W0622
 """
-    DB functions for users
+    DB functions for geo
 """
 from sqlalchemy import select
 

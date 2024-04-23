@@ -1,6 +1,6 @@
 # pylint: disable=W0622
 """
-    API functionality for user endpoints
+    API functionality for geo endpoints
 """
 
 from fastapi import HTTPException
