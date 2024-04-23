@@ -52,5 +52,10 @@ def api_albums_get_item(id: int):
 
 @app.get("/photos/{id}", tags=["Photo"])
 def api_photos_get_item(id: int):
-    """ get album endpoint"""
+    """ get photo endpoint"""
+    return albums_get_item(id)
+
+@app.get("/todos/{id}", tags=["Todo"])
+def api_photos_get_item(id: int):
+    """ get todo endpoint"""
     return albums_get_item(id)

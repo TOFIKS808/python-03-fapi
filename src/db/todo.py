@@ -4,12 +4,12 @@
 """
 from sqlalchemy import select
 
-from src.Model import Company
+from src.Model import Todo
 from src.db.lib import get_db_session
 from src.logger import logger
 
 
-def get_todo(id: int) -> None | Company:
+def get_todo(id: int) -> None | Todo:
     """get todo by id"""
     with get_db_session() as session:
         try:

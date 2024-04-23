@@ -1,7 +1,7 @@
 # pylint: disable=R0801, C0103
 
 """
-    Tests for functional tests for photo endpoints.
+    Tests for functional tests for todo endpoints.
 """
 import unittest
 from fastapi.testclient import TestClient
@@ -12,7 +12,7 @@ from main import app
 
 class CompaniesTestCase(DbTestTestCase):
     """
-        Tests for functional tests for photo endpoints.
+        Tests for functional tests for todo endpoints.
     """
 
     def setUp(self):
@@ -21,13 +21,13 @@ class CompaniesTestCase(DbTestTestCase):
         super().setUp()
 
     def test_photo_get_item_not_existing(self):
-        """ Test GET request to /photos/{id} with invalid id. """
-        response = self.client.get("/photos/-1")
+        """ Test GET request to /todos/{id} with invalid id. """
+        response = self.client.get("/todos/-1")
         self.assertEqual(404, response.status_code)
 
     def test_photo_get_item(self):
-        """ Test GET request to /photos/{id} with valid id. """
-        response = self.client.get("/photos/1")
+        """ Test GET request to /todos/{id} with valid id. """
+        response = self.client.get("/todos/1")
         self.assertEqual(200, response.status_code)
 
         photo = response.json()
