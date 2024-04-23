@@ -1,6 +1,6 @@
 # pylint: disable=R0801
 """
-    Tests for functional tests for company endpoints.
+    Tests for functional tests for geo endpoints.
 """
 import unittest
 from fastapi.testclient import TestClient
@@ -11,7 +11,7 @@ from main import app
 
 class CompaniesTestCase(DbTestTestCase):
     """
-        Tests for functional tests for company endpoints.
+        Tests for functional tests for geo endpoints.
     """
 
     def setUp(self):
@@ -20,17 +20,17 @@ class CompaniesTestCase(DbTestTestCase):
         super().setUp()
 
     def test_company_get_item_not_existing(self):
-        """ Test GET request to /companies/{id} with invalid id. """
-        response = self.client.get("/companies/-1")
+        """ Test GET request to /geo/{id} with invalid id. """
+        response = self.client.get("/geo/-1")
         self.assertEqual(404, response.status_code)
 
     def test_company_get_item(self):
-        """ Test GET request to /companies/{id} with valid id. """
-        response = self.client.get("/companies/1")
+        """ Test GET request to /geo/{id} with valid id. """
+        response = self.client.get("/geo/1")
         self.assertEqual(200, response.status_code)
 
-        company = response.json()
-        self.assertEqual(1, company.get('id'))
+        geo = response.json()
+        self.assertEqual(1, geo.get('id'))
 
 
 if __name__ == '__main__':
