@@ -19,6 +19,12 @@ test::
 	python -m coverage html
 .PHONY: test
 
+test-db-user::
+	DB_URL="sqlite:///./var/testing.db" python -m coverage run -m unittest tests/db/test_users.py  -vvv
+
+test-api-user::
+	DB_URL="sqlite:///./var/testing.db" python -m coverage run -m unittest tests/api/test_users.py  -vvv
+
 api::
 	uvicorn main:app --reload
 

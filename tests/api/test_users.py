@@ -34,6 +34,11 @@ class UsersTestCase(DbTestTestCase):
         self.assertEqual(1, user.get('company').get('id'))
         self.assertEqual(1, user.get('address').get('id'))
 
+    def test_users_get_collection(self):
+        response = self.client.get("/users/")
+        users = response.json()
+        print(users)
+
 
 if __name__ == '__main__':
     unittest.main()
