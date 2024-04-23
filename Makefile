@@ -14,7 +14,8 @@ lint::
 .PHONY: lint
 
 test::
-	python  -m unittest discover tests -vvv
+	mkdir -p ./var
+	DB_URL="sqlite:///./var/testing.db" python  -m unittest discover tests -vvv
 .PHONY: test
 
 api::

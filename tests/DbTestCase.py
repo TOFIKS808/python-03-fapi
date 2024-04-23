@@ -1,27 +1,49 @@
-"""
-    Tests for database abstract classes
-"""
+# pylint: disable=C0103
 
+""" Unittest helper class for DB operations"""
 import unittest
-
+from os import getenv
 import sqlalchemy as sql
+from sqlalchemy_utils import database_exists, drop_database
 from sqlalchemy import orm
-from sqlalchemy_utils import database_exists
-from src.populate_db import create_db, create_schema, endpoint_users, endpoint_posts, endpoint_comments, \
-    endpoint_albums, endpoint_photos, endpoint_todos
+
 from src.Model import User, Post, Comment, Album, Photo, Todo
 
+from src.populate_db import create_db, create_schema, endpoint_users, endpoint_posts, endpoint_comments, \
+    endpoint_albums, endpoint_photos, endpoint_todos
 
-class TestDbAbstractTestCase(unittest.TestCase):
-    """Testing class"""
 
-    def func_create_db(self, url: str):
+class DbTestTestCase(unittest.TestCase):
+    """DB test case"""
+
+    def setUp(self) -> None:
+        """set up db"""
+        url = getenv('DB_URL')
+
+        self.__func_create_db(url)
+        self.__func_create_schema(url)
+        self.__func_endpoint_users(url)
+        self.__func_endpoint_posts(url)
+        self.__func_endpoint_comments(url)
+        self.__func_endpoint_albums(url)
+        self.__func_endpoint_photos(url)
+        self.__func_endpoint_todos(url)
+
+    def tearDown(self) -> None:
+        """tear down db"""
+        url = getenv('DB_URL')
+
+        engine = sql.create_engine(url)
+        if database_exists(engine.url):
+            drop_database(engine.url)
+
+    def __func_create_db(self, url: str):
         """Database creation test"""
         create_db(url)
         engine = sql.create_engine(url)
         self.assertTrue(database_exists(engine.url))
 
-    def func_create_schema(self, url: str):
+    def __func_create_schema(self, url: str):
         """ Tables creation test """
         create_schema(url)
         engine = sql.create_engine(url)
@@ -35,7 +57,7 @@ class TestDbAbstractTestCase(unittest.TestCase):
         self.assertTrue(sql.inspect(engine).has_table('todo'))
         self.assertTrue(sql.inspect(engine).has_table('users'))
 
-    def func_endpoint_users(self, url: str):
+    def __func_endpoint_users(self, url: str):
         """ Populating users table test """
 
         endpoint_users(url)
@@ -56,7 +78,7 @@ class TestDbAbstractTestCase(unittest.TestCase):
             self.assertEqual("-43.9509", user.address.geo.lat)
             self.assertEqual("-34.4618", user.address.geo.long)
 
-    def func_endpoint_posts(self, url: str):
+    def __func_endpoint_posts(self, url: str):
         """ Populating post table test """
 
         endpoint_posts(url)
@@ -73,7 +95,7 @@ class TestDbAbstractTestCase(unittest.TestCase):
                              " neque\nfugiat blanditiis voluptate porro vel nihil molestiae ut reiciendis\nqui aperiam"
                              " non debitis possimus qui neque nisi nulla")
 
-    def func_endpoint_comments(self, url: str):
+    def __func_endpoint_comments(self, url: str):
         """ Populating comment table test """
 
         endpoint_comments(url)
@@ -90,7 +112,7 @@ class TestDbAbstractTestCase(unittest.TestCase):
                                            " occaecati quod ullam at\nvoluptatem error expedita pariatur\nnihil sint"
                                            " nostrum voluptatem reiciendis et")
 
-    def func_endpoint_albums(self, url: str):
+    def __func_endpoint_albums(self, url: str):
         """ Populating album table test """
 
         endpoint_albums(url)
@@ -103,7 +125,7 @@ class TestDbAbstractTestCase(unittest.TestCase):
             self.assertEqual(2, album.id)
             self.assertEqual(album.title, "sunt qui excepturi placeat culpa")
 
-    def func_endpoint_photos(self, url: str):
+    def __func_endpoint_photos(self, url: str):
         """ Populating photo table test """
 
         endpoint_photos(url)
@@ -118,7 +140,7 @@ class TestDbAbstractTestCase(unittest.TestCase):
             self.assertEqual(photo.url, "https://via.placeholder.com/600/771796")
             self.assertEqual(photo.thumbnail_url, "https://via.placeholder.com/150/771796")
 
-    def func_endpoint_todos(self, url: str):
+    def __func_endpoint_todos(self, url: str):
         """ Populating todo table test """
 
         endpoint_todos(url)
