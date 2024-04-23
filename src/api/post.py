@@ -13,4 +13,4 @@ def posts_get_item(id: int):
     if result:
         return result
 
-    raise HTTPException(status_code=404, detail="User not found")
+    raise HTTPException(status_code=404, detail="Post not found")

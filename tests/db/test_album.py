@@ -15,7 +15,7 @@ class AlbumDbTestCase(DbTestTestCase):
         self.assertIsNone(get_album(id=-11))
 
     def test_get_item(self):
-        """ Testing if output is instance of the Geo class """
+        """ Testing if output is instance of the Album class """
         result = get_album(id=1)
         self.assertIsInstance(result, Album)
 

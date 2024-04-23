@@ -8,7 +8,7 @@ from src.db.address import get_address
 
 
 def address_get_item(id: int):
-    """ Get a address by id """
+    """ Get address by id """
     result = get_address(id)
     if result:
         return result
