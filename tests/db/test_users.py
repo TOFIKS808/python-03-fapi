@@ -18,6 +18,8 @@ class UsersDbTestCase(DbTestTestCase):
         """ Testing if output is instance of the User class """
         result = get_user(id=1)
         self.assertIsInstance(result, User)
+        self.assertIsNone(result.company)
+        self.assertIsNone(result.address)
 
 
 if __name__ == '__main__':

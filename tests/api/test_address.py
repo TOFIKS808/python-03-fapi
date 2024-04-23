@@ -29,7 +29,8 @@ class UsersTestCase(DbTestTestCase):
 
         address = response.json()
         self.assertEqual(1, address.get('id'))
-        self.assertEqual(1, address.get('geo').get('id'))
+        self.assertIsNone(address.get('geo'))
+        # self.assertEqual(1, address.get('geo').get('id'))
 
 
 if __name__ == '__main__':

@@ -24,13 +24,11 @@ class User(Base):
     email: Mapped[str] = mapped_column((String(1000)))
     phone: Mapped[str] = mapped_column((String(1000)))
     website: Mapped[str] = mapped_column((String(1000)))
-    company: Mapped["Company"] = relationship(back_populates="user", cascade="all, delete-orphan", lazy="selectin")
-    address: Mapped["Address"] = relationship(back_populates="user", cascade="all, delete-orphan", lazy="selectin")
+    company: Mapped["Company"] = relationship(back_populates="user", cascade="all, delete-orphan", lazy="noload")
+    address: Mapped["Address"] = relationship(back_populates="user", cascade="all, delete-orphan", lazy="noload")
     posts: Mapped[List["Post"]] = relationship(back_populates="user", cascade="all, delete-orphan")
     albums: Mapped[List["Album"]] = relationship(back_populates="user", cascade="all, delete-orphan")
     todos: Mapped[List["Todo"]] = relationship(back_populates="user", cascade="all, delete-orphan")
-
-
 
     def __repr__(self) -> str:
         return (f"User(id={self.id!r}, name={self.name!r}, username={self.username!r}, email={self.email!r}, "
@@ -65,7 +63,7 @@ class Address(Base):
     suite: Mapped[str] = mapped_column((String(1000)))
     city: Mapped[str] = mapped_column((String(1000)))
     zipcode: Mapped[str] = mapped_column((String(1000)))
-    geo: Mapped["Geo"] = relationship(back_populates="address", cascade="all, delete-orphan", lazy="selectin")
+    geo: Mapped["Geo"] = relationship(back_populates="address", cascade="all, delete-orphan", lazy="noload")
 
     def __repr__(self) -> str:
         return (f"Address(id={self.id!r}, user_id={self.user_id!r},  street={self.street!r},"
