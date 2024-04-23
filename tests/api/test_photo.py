@@ -1,4 +1,5 @@
 # pylint: disable=R0801, C0103
+
 """
     Tests for functional tests for photo endpoints.
 """
