@@ -14,6 +14,7 @@ lint::
 .PHONY: lint
 
 test::
+	mkdir -p ./var
 	python  -m unittest discover tests -vvv
 .PHONY: test
 
