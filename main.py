@@ -9,6 +9,7 @@ from src.api.address import address_get_item
 from src.api.geo import geo_get_item
 from src.api.post import posts_get_item
 from src.api.comment import comments_get_item
+from src.api.album import albums_get_item
 
 app = FastAPI()
 
@@ -43,3 +44,8 @@ def api_posts_get_item(id: int):
 def api_posts_get_item(id: int):
     """ get comment endpoint"""
     return comments_get_item(id)
+
+@app.get("/albums/{id}", tags=["Album"])
+def api_posts_get_item(id: int):
+    """ get album endpoint"""
+    return albums_get_item(id)
