@@ -2,6 +2,7 @@
 """
     DB functions for users
 """
+from typing import List
 from sqlalchemy import select
 
 from src.Model import User
@@ -16,4 +17,13 @@ def get_user(id: int) -> None | User:
             return session.execute(select(User).where(User.id == id)).scalars().one()
         except Exception as e:
             logger().debug(f"get_user : {str(e)}")
+            return None
+
+
+def get_users() -> List[User]:
+    with get_db_session() as session:
+        try:
+            return session.execute(select(User)).scalars().all()
+        except Exception as e:
+            logger().debug(f"get_users : {str(e)}")
             return None
