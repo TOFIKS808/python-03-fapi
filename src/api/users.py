@@ -1,3 +1,4 @@
+# pylint: disable=W0622
 """
     API functionality for user endpoints
 """

@@ -11,6 +11,7 @@ class SQLiteTestCase(TestDbAbstractTestCase):
     """Testing class"""
 
     def test_dummy(self):
+        """Dummy test"""
         self.assertTrue(True)
 
     @unittest.skip
