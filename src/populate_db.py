@@ -10,13 +10,6 @@ from sqlalchemy_utils import database_exists, drop_database, create_database
 
 from Model import Base, User, Company, Address, Geo, Post, Comment, Album, Photo, Todo
 
-db_name = getenv('PG_DB_NAME')
-db_user = getenv('PG_DB_USER')
-db_pass = getenv('PG_DB_PASS')
-db_host = getenv('PG_DB_HOST')
-db_port = getenv('PG_DB_PORT')
-URL = f"postgresql+psycopg2://{db_user}:{db_pass}@{db_host}:{db_port}/{db_name}"
-
 
 def create_db(url: str) -> None:
     """create new db, drop if exists"""
@@ -170,11 +163,12 @@ def endpoint_todos(url: str) -> None:
 
 
 if __name__ == '__main__':
-    create_db(URL)
-    create_schema(URL)
-    endpoint_users(URL)
-    endpoint_posts(URL)
-    endpoint_comments(URL)
-    endpoint_albums(URL)
-    endpoint_photos(URL)
-    endpoint_todos(URL)
+    DB_URL = getenv("DB_URL")
+    create_db(DB_URL)
+    create_schema(DB_URL)
+    endpoint_users(DB_URL)
+    endpoint_posts(DB_URL)
+    endpoint_comments(DB_URL)
+    endpoint_albums(DB_URL)
+    endpoint_photos(DB_URL)
+    endpoint_todos(DB_URL)
