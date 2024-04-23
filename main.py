@@ -7,6 +7,8 @@ from src.api.users import users_get_item
 from src.api.company import company_get_item
 from src.api.address import address_get_item
 from src.api.geo import geo_get_item
+from src.api.post import posts_get_item
+
 
 app = FastAPI()
 
@@ -30,4 +32,9 @@ def api_users_get_item(id: int):
 def api_users_get_item(id: int):
     """ get geo endpoint"""
     return geo_get_item(id)
+
+@app.get("/posts/{id}", tags=["Post"])
+def api_posts_get_item(id: int):
+    """ get posts endpoint"""
+    return posts_get_item(id)
 
