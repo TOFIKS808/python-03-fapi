@@ -5,13 +5,13 @@
 from sqlalchemy import select
 
 from src.Model import Address
-from src.db.lib import get_db_session, get_db_url_prod
+from src.db.lib import get_db_session
 from src.logger import logger
 
 
-def get_address(id: int, url: str = get_db_url_prod()) -> None | Address:
+def get_address(id: int) -> None | Address:
     """get address by id"""
-    with get_db_session(url) as session:
+    with get_db_session() as session:
         try:
             return session.execute(select(Address).where(Address.id == id)).scalars().one()
         except Exception as e:

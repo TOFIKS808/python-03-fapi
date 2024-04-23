@@ -5,13 +5,13 @@
 from sqlalchemy import select
 
 from src.Model import Company
-from src.db.lib import get_db_session, get_db_url_prod
+from src.db.lib import get_db_session
 from src.logger import logger
 
 
-def get_company(id: int, url: str = get_db_url_prod()) -> None | Company:
+def get_company(id: int) -> None | Company:
     """get company by id"""
-    with get_db_session(url) as session:
+    with get_db_session() as session:
         try:
             return session.execute(select(Company).where(Company.id == id)).scalars().one()
         except Exception as e:
