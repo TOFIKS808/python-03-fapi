@@ -24,7 +24,7 @@ class PostTestCase(DbTestTestCase):
         self.assertIsNone(get_post(1))
 
     def test_create_item(self):
-        api_post = ApiPost(user_id=1, title='title', body='body')
+        api_post = ApiPost(user_id=10, title='title', body='body')
         create_item(api_post)
 
 

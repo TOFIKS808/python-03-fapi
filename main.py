@@ -7,7 +7,7 @@ from src.api.users import users_get_item, users_get_collection
 from src.api.company import company_get_item
 from src.api.address import address_get_item
 from src.api.geo import geo_get_item
-from src.api.post import posts_get_item, posts_delete_item
+from src.api.post import posts_get_item, posts_delete_item, posts_create_item
 from src.api.comment import comments_get_item
 from src.api.album import albums_get_item
 
@@ -61,6 +61,7 @@ def api_posts_get_collection():
 @app.post("/posts", tags=["Post"])
 def api_posts_create(post: Post) -> Post:
     """ create post endpoint"""
+    return posts_create_item(post)
 
 
 

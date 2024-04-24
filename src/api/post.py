@@ -4,7 +4,7 @@
 """
 
 from fastapi import HTTPException
-from src.db.post import get_post, delete_item
+from src.db.post import get_post, delete_item, create_item
 
 
 def posts_get_item(id: int):
@@ -19,6 +19,15 @@ def posts_get_item(id: int):
 def posts_delete_item(id: int):
     """ Delete a post by id """
     result = delete_item(id)
+
+    if result:
+        return ''
+
+    raise HTTPException(status_code=404, detail="Post not found")
+
+def posts_create_item(post):
+    """ create a post by id """
+    result = create_item(post)
 
     if result:
         return ''

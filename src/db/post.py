@@ -48,9 +48,8 @@ def create_item(post: ApiPost):
 
     with get_db_session() as session:
         try:
-            r = session.add(db_post)
-            print(r)
+            session.add(db_post)
             session.commit()
 
         except Exception as e:
-            logger().debug(f"delete_post: {str(e)}")
+            logger().debug(f"create_post: {str(e)}")
