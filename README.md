@@ -31,4 +31,8 @@ API used https://jsonplaceholder.typicode.com
 
 
 https://medium.com/@arthurapp98/using-sqlalchemy-to-create-and-populate-a-postgresql-database-with-excel-data-eb6049d93402
+http://127.0.0.1:8000/docs#/default/users_get_item_users__id__get
 
+ORM relation - delete
+
+https://esmithy.net/2020/06/20/sqlalchemy-cascade-delete/

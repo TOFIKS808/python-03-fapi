@@ -25,6 +25,14 @@ test-db-user::
 test-api-user::
 	DB_URL="sqlite:///./var/testing.db" python -m coverage run -m unittest tests/api/test_users.py  -vvv
 
+test-db-post::
+	DB_URL="sqlite:///./var/testing.db" python -m coverage run -m unittest tests/db/test_post.py  -vvv
+
+test-api-post::
+	DB_URL="sqlite:///./var/testing.db" python -m coverage run -m unittest tests/api/test_post.py  -vvv
+
+
+
 api::
 	uvicorn main:app --reload
 

@@ -7,9 +7,11 @@ from src.api.users import users_get_item, users_get_collection
 from src.api.company import company_get_item
 from src.api.address import address_get_item
 from src.api.geo import geo_get_item
-from src.api.post import posts_get_item
+from src.api.post import posts_get_item, posts_delete_item
 from src.api.comment import comments_get_item
 from src.api.album import albums_get_item
+
+from src.ApiModel import Post
 
 app = FastAPI()
 
@@ -40,10 +42,27 @@ def api_geo_get_item(id: int):
     return geo_get_item(id)
 
 
+
+#### POST
 @app.get("/posts/{id}", tags=["Post"])
 def api_posts_get_item(id: int):
     """ get posts endpoint"""
     return posts_get_item(id)
+
+@app.delete("/posts/{id}", tags=["Post"])
+def api_posts_get_item(id: int):
+    """ get posts endpoint"""
+    return posts_delete_item(id)
+
+@app.get("/posts", tags=["Post"])
+def api_posts_get_collection():
+    """ get posts endpoint"""
+
+@app.post("/posts", tags=["Post"])
+def api_posts_create(post: Post) -> Post:
+    """ create post endpoint"""
+
+
 
 @app.get("/comments/{id}", tags=["Comment"])
 def api_comments_get_item(id: int):
