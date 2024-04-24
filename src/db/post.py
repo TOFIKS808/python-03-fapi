@@ -3,15 +3,15 @@
     DB functions for posts
 """
 from typing import List
-from sqlalchemy import select, delete
+from sqlalchemy import select, delete, update
 
 from src.Model import Post
-from src.ApiModel import Post as ApiPost
+from src.ApiModel import PostCreate, PostUpdate
 from src.db.lib import get_db_session
 from src.logger import logger
 
 
-def get_post(id: int) -> None | Post:
+def get_item(id: int) -> None | Post:
     """get post by id"""
     with get_db_session() as session:
         try:
@@ -21,7 +21,7 @@ def get_post(id: int) -> None | Post:
             return None
 
 
-def get_posts() -> List[Post]:
+def get_collection() -> List[Post]:
     """get all posts"""
     with get_db_session() as session:
         try:
@@ -42,7 +42,7 @@ def delete_item(id: int):
             logger().debug(f"delete_post: {str(e)}")
 
 
-def create_item(post: ApiPost):
+def create_item(post: PostCreate) -> None | Post:
     """create post"""
     db_post = Post(title=post.title, body=post.body, user_id=post.user_id)
 
@@ -51,5 +51,19 @@ def create_item(post: ApiPost):
             session.add(db_post)
             session.commit()
 
+            return get_item(db_post.id)
+
         except Exception as e:
             logger().debug(f"create_post: {str(e)}")
+
+
+def update_item(id: int, post: PostUpdate) -> None | Post:
+    """update post"""
+
+    with get_db_session() as session:
+        try:
+            session.query(Post).filter(Post.id == id).update({'title': post.title, 'body': post.body})
+            session.commit()
+            return get_item(id)
+        except Exception as e:
+            logger().debug(f"update_post: {str(e)}")
