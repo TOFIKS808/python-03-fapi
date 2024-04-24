@@ -5,7 +5,7 @@
 
 from fastapi import HTTPException
 from src.db.post import get_item, delete_item, create_item
-from src.ApiModel import Post as ApiPost
+from src.ApiModel import PostCreate
 
 
 def posts_get_item(id: int):
@@ -26,7 +26,8 @@ def posts_delete_item(id: int):
 
     raise HTTPException(status_code=404, detail="Post not found")
 
-def posts_create_item(post: ApiPost):
+
+def posts_create_item(post: PostCreate):
     """ Create a new post """
     obj = create_item(post)
 
