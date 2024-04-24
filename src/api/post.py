@@ -4,12 +4,13 @@
 """
 
 from fastapi import HTTPException
-from src.db.post import get_post, delete_item
+from src.db.post import get_item, delete_item, create_item
+from src.ApiModel import Post as ApiPost
 
 
 def posts_get_item(id: int):
     """ Get a post by id """
-    result = get_post(id)
+    result = get_item(id)
     if result:
         return result
 
@@ -24,3 +25,12 @@ def posts_delete_item(id: int):
         return ''
 
     raise HTTPException(status_code=404, detail="Post not found")
+
+def posts_create_item(post: ApiPost):
+    """ Create a new post """
+    obj = create_item(post)
+
+    if obj:
+        return obj
+
+    raise HTTPException(status_code=400)
