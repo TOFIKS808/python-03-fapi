@@ -3,7 +3,7 @@
     DB functions for posts
 """
 from typing import List
-from sqlalchemy import select, delete, update
+from sqlalchemy import select, delete
 
 from src.Model import Post
 from src.ApiModel import PostCreate, PostUpdate
@@ -18,7 +18,7 @@ def get_item(id: int) -> None | Post:
             return session.execute(select(Post).where(Post.id == id)).scalars().one()
         except Exception as e:
             logger().debug(f"get_post: {str(e)}")
-            return None
+    return None
 
 
 def get_collection() -> List[Post]:
@@ -28,7 +28,7 @@ def get_collection() -> List[Post]:
             return session.execute(select(Post)).scalars().all()
         except Exception as e:
             logger().debug(f"get_posts : {str(e)}")
-            return None
+    return None
 
 
 def delete_item(id: int):
@@ -40,6 +40,7 @@ def delete_item(id: int):
             return bool(r.rowcount)
         except Exception as e:
             logger().debug(f"delete_post: {str(e)}")
+    return None
 
 
 def create_item(post: PostCreate) -> None | Post:
@@ -55,6 +56,7 @@ def create_item(post: PostCreate) -> None | Post:
 
         except Exception as e:
             logger().debug(f"create_post: {str(e)}")
+    return None
 
 
 def update_item(id: int, post: PostUpdate) -> None | Post:
@@ -67,3 +69,4 @@ def update_item(id: int, post: PostUpdate) -> None | Post:
             return get_item(id)
         except Exception as e:
             logger().debug(f"update_post: {str(e)}")
+    return None

@@ -31,6 +31,9 @@ test-db-post::
 test-api-post::
 	DB_URL="sqlite:///./var/testing.db" python -m coverage run -m unittest tests/api/test_post.py  -vvv
 
+test-api-func-post::
+	DB_URL="sqlite:///./var/testing.db" python -m coverage run -m unittest tests/api/test_post_func.py  -vvv
+
 
 
 api::

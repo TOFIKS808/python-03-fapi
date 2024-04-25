@@ -4,7 +4,7 @@
 """
 
 from fastapi import HTTPException
-from src.db.post import get_item, delete_item, create_item
+from src.db.post import get_item, delete_item, create_item, update_item
 from src.ApiModel import PostCreate
 
 
@@ -30,6 +30,16 @@ def posts_delete_item(id: int):
 def posts_create_item(post: PostCreate):
     """ Create a new post """
     obj = create_item(post)
+
+    if obj:
+        return obj
+
+    raise HTTPException(status_code=400)
+
+
+def posts_update_item(id: int, post: PostCreate):
+    """ Create a new post """
+    obj = update_item(id, post)
 
     if obj:
         return obj

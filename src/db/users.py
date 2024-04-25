@@ -17,13 +17,14 @@ def get_user(id: int) -> None | User:
             return session.execute(select(User).where(User.id == id)).scalars().one()
         except Exception as e:
             logger().debug(f"get_user : {str(e)}")
-            return None
+    return None
 
 
 def get_users() -> List[User]:
+    """get all users"""
     with get_db_session() as session:
         try:
             return session.execute(select(User)).scalars().all()
         except Exception as e:
             logger().debug(f"get_users : {str(e)}")
-            return None
+    return None

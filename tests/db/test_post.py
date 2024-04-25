@@ -1,3 +1,6 @@
+"""
+    Tests for `post` module.
+"""
 import unittest
 from tests.DbTestCase import DbTestTestCase
 from src.db.post import get_item, get_collection, delete_item, create_item, update_item
@@ -6,6 +9,7 @@ from src.ApiModel import PostCreate, PostUpdate
 
 
 class PostTestCase(DbTestTestCase):
+    """ Tests for `post` module. """
     def test_get_item_not_existing(self):
         """ Testing get post with an item that does not exist """
         self.assertIsNone(get_item(id=-11))
@@ -24,6 +28,7 @@ class PostTestCase(DbTestTestCase):
         self.assertIsNone(get_item(1))
 
     def test_create_item(self):
+        """ Testing if output is instance of the Post class """
         count_prior_create = len(get_collection())
         api_post = PostCreate(user_id=1, title='title', body='body')
 
