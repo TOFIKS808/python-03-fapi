@@ -86,28 +86,29 @@ class Geo(Base):
 
 
 class Post(Base):
-    """ budowa tabeli post """
+    """ struktura tabeli post """
     __tablename__ = "post"
+    __table_args__ = {'sqlite_autoincrement': True}
     id: Mapped[int] = mapped_column(primary_key=True)
     user_id: Mapped[int] = mapped_column(ForeignKey("users.id"))
     title: Mapped[str] = mapped_column(String(1000))
     body: Mapped[str] = mapped_column(String(1000))
     user: Mapped["User"] = relationship(back_populates="posts")
-    comments: Mapped[List["Comment"]] = relationship(back_populates="post", cascade="all, delete-orphan")
+    comments = relationship("Comment", back_populates="post", passive_deletes=True)
 
     def __repr__(self) -> str:
         return f"Post(id={self.id!r}, user_id={self.user_id!r}, title={self.title!r}, body={self.body!r})"
 
 
 class Comment(Base):
-    """ budowa tabeli comment """
+    """ struktura tabeli comment """
     __tablename__ = "comment"
     id: Mapped[int] = mapped_column(primary_key=True)
-    post_id: Mapped[int] = mapped_column(ForeignKey("post.id"))
+    post_id: Mapped[int] = mapped_column(ForeignKey("post.id", ondelete="CASCADE"), nullable=False)
     name: Mapped[str] = mapped_column((String(1000)))
     email: Mapped[str] = mapped_column((String(1000)))
     body: Mapped[str] = mapped_column((String(1000)))
-    post: Mapped["Post"] = relationship(back_populates="comments")
+    post = relationship('Post', back_populates="comments")
 
     def __repr__(self) -> str:
         return f"Comment(id={self.id!r}, post_id={self.post_id}, email={self.email!r}, body={self.body!r})"

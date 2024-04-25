@@ -35,6 +35,7 @@ class UsersTestCase(DbTestTestCase):
         self.assertEqual(1, user.get('address').get('id'))
 
     def test_users_get_collection(self):
+        """ get list of users """
         response = self.client.get("/users/")
         users = response.json()
         print(users)

@@ -20,6 +20,7 @@ class UsersDbTestCase(DbTestTestCase):
         self.assertIsInstance(result, User)
 
     def test_get_users(self):
+        """ Testing if output is instance of the User class """
         result = get_users()
         print(result)
 

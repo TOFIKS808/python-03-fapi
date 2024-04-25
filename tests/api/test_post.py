@@ -32,6 +32,18 @@ class PostTestCase(DbTestTestCase):
         post = response.json()
         self.assertEqual(1, post.get('id'))
 
+    def test_post_get_all_item(self):
+        """ Test GET request to /posts/ """
+        response = self.client.get("/posts/")
+        self.assertEqual(200, response.status_code)
+
+    def test_post_delete_item(self):
+        """ test delete request to /posts/{id} with valid id.  """
+        response = self.client.delete("/posts/1")
+        print(response.status_code)
+        response = self.client.delete("/posts/1")
+        print(response.status_code)
+
 
 if __name__ == '__main__':
     unittest.main()
